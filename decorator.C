@@ -1,35 +1,25 @@
-/*
-*/
 class VisualComponent;
 class Window {
   public:
     void SetContents (VisualComponent* contents);
 };
-/*
-*/
 class VisualComponent {
 public:
     VisualComponent();
 
     virtual void Draw();
     virtual void Resize();
-    // ...
+
 };
-/*
-*/
 class Decorator : public VisualComponent {
 public:
     Decorator(VisualComponent*);
-/*
-*/
     virtual void Draw();
     virtual void Resize();
-    // ...
+
 private:
     VisualComponent* _component;
 };
-/*
-*/
 void Decorator::Draw () {
     _component->Draw();
 }
@@ -37,8 +27,6 @@ void Decorator::Draw () {
 void Decorator::Resize () {
     _component->Resize();
 }
-/*
-*/
 class BorderDecorator : public Decorator {
 public:
     BorderDecorator(VisualComponent*, int borderWidth);
@@ -49,19 +37,13 @@ private:
 private:
     int _width;
 };
-/*
-*/
 void BorderDecorator::Draw () {
     Decorator::Draw();
     DrawBorder(_width);
 }
-/*
-*/
 void Window::SetContents (VisualComponent* contents) {
-    // ...
+
 }
-/*
-*/
 class ScrollDecorator : public Decorator {
 public:
     ScrollDecorator(VisualComponent*);
@@ -70,25 +52,15 @@ public:
 class TextView : public VisualComponent {
 };
 main () {
-/*
-*/
 Window* window = new Window;
 TextView* textView = new TextView;
-/*
-*/
 window->SetContents(textView);
-/*
-*/
 window->SetContents(
     new BorderDecorator(
         new ScrollDecorator(textView), 1
     )
 );
-/*
-*/
 }
-/*
-*/
 class Stream {
   public:
     virtual void PutInt(int);
@@ -118,8 +90,6 @@ class FileStream : public Stream {
 
 void dummy() {
 
-/*
-*/
 Stream* aStream = new CompressingStream(
     new ASCII7Stream(
          new FileStream("aFileName")
@@ -127,8 +97,4 @@ Stream* aStream = new CompressingStream(
 );
 aStream->PutInt(12);
 aStream->PutString("aString");
-/*
-*/
 }
-/*
-*/

@@ -76,7 +76,7 @@ public:
 
     virtual Maze* Clone() const;
 private:
-    // ...
+
 };
 #endif
 #ifndef BombedWall_H

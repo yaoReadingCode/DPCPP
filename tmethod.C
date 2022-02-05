@@ -1,8 +1,4 @@
-/*
-*/
 #include "Foundation.H"
-/*
-*/
 class Document;
 class Application {
 public:
@@ -16,15 +12,11 @@ public:
   virtual void Open();
   virtual void DoRead();
 };
-/*
-*/
 void Application::OpenDocument (const char* name) {
     if (!CanOpenDocument(name)) {
         // cannot handle this document
         return;
     }
-/*
-*/
     Document* doc = DoCreateDocument();
 
     if (doc) {
@@ -34,8 +26,6 @@ void Application::OpenDocument (const char* name) {
         doc->DoRead();
     }
 }
-/*
-*/
 class ParentClass {
   public:
     void Operation();
@@ -46,28 +36,18 @@ class DerivedClass : public ParentClass {
     void Operation();
     virtual void HookOperation();
 };
-/*
-*/
 void DerivedClass::Operation () {
     // DerivedClass extended behavior
     ParentClass::Operation();
 }
-/*
-*/
 void ParentClass::Operation () {
     // ParentClass behavior
     HookOperation();
 }
-/*
-*/
 void ParentClass::HookOperation () { }
-/*
-*/
 void DerivedClass::HookOperation () {
      // derived class extension
 }
-/*
-*/
 class View {
 public:
     void Display();
@@ -80,20 +60,12 @@ class MyView : public View {
 public:
     virtual void DoDisplay();
 };
-/*
-*/
 void View::Display () {
     SetFocus();
     DoDisplay();
     ResetFocus();
 }
-/*
-*/
 void View::DoDisplay () { }
-/*
-*/
 void MyView::DoDisplay () {
     // render the view's contents
 }
-/*
-*/

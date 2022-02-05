@@ -1,5 +1,3 @@
-/*
-*/
 #include "List.H"
 
 class Document {
@@ -14,8 +12,6 @@ class Application {
     Application();
     void Add(Document*);
 };
-/*
-*/
 class Command {
 public:
     virtual ~Command();
@@ -24,8 +20,6 @@ public:
 protected:
     Command();
 };
-/*
-*/
 class OpenCommand : public Command {
 public:
     OpenCommand(Application*);
@@ -37,13 +31,9 @@ private:
     Application* _application;
     char* _response;
 };
-/*
-*/
 OpenCommand::OpenCommand (Application* a) {
     _application = a;
 }
-/*
-*/
 void OpenCommand::Execute () {
     const char* name = AskUser();
 
@@ -53,8 +43,6 @@ void OpenCommand::Execute () {
         document->Open();
     }
 }
-/*
-*/
 class PasteCommand : public Command {
 public:
     PasteCommand(Document*);
@@ -63,8 +51,6 @@ public:
 private:
     Document* _document;
 };
-/*
-*/
 PasteCommand::PasteCommand (Document* doc) {
     _document = doc;
 }
@@ -72,8 +58,6 @@ PasteCommand::PasteCommand (Document* doc) {
 void PasteCommand::Execute () {
     _document->Paste();
 }
-/*
-*/
 template <class Receiver>
 class SimpleCommand : public Command {
 public:
@@ -87,32 +71,22 @@ private:
     Action _action;
     Receiver* _receiver;
 };
-/*
-*/
 template <class Receiver>
 void SimpleCommand<Receiver>::Execute () {
     (_receiver->*_action)();
 }
-/*
-*/
 class MyClass {
 public:
   void Action();
 };
 void dummy () {
-/*
-*/
 MyClass* receiver = new MyClass;
-// ...
+
 Command* aCommand =
     new SimpleCommand<MyClass>(receiver, &MyClass::Action);
-// ...
+
 aCommand->Execute();
-/*
-*/
 }
-/*
-*/
 class MacroCommand : public Command {
 public:
     MacroCommand();
@@ -125,8 +99,6 @@ public:
 private:
     List<Command*>* _cmds;
 };
-/*
-*/
 void MacroCommand::Execute () {
     ListIterator<Command*> i(_cmds);
 
@@ -135,8 +107,6 @@ void MacroCommand::Execute () {
         c->Execute();
     }
 }
-/*
-*/
 void MacroCommand::Add (Command* c) {
     _cmds->Append(c);
 }
@@ -144,5 +114,3 @@ void MacroCommand::Add (Command* c) {
 void MacroCommand::Remove (Command* c) {
     _cmds->Remove(c);
 }
-/*
-*/

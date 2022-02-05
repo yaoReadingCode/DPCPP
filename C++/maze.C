@@ -62,7 +62,7 @@ MazeFactory* MazeFactory::Instance () {
         } else if (strcmp(mazeStyle, "enchanted") == 0) {
             _instance = new EnchantedMazeFactory;
 
-        // ... other possible subclasses
+         other possible subclasses
 
         } else {        // default
             _instance = new MazeFactory;
@@ -328,7 +328,7 @@ Maze* MazeGame::CreateMaze (MazeBuilder& builder) {
 
 Maze* MazeGame::CreateComplexMaze (MazeBuilder& builder) {
     builder.BuildRoom(1);
-    // ...
+
     builder.BuildRoom(1001);
 
     return builder.GetMaze();

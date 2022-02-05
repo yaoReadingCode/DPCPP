@@ -1,8 +1,4 @@
-/*
-*/
 #ifdef Consequences1
-/*
-*/
 class Composition {
   public:
     void Repair();
@@ -12,8 +8,6 @@ class Composition {
 };
 const int SimpleStrategy = 1;
 const int TeXStrategy = 2;
-/*
-*/
 void Composition::Repair () {
     switch (_breakingStrategy) {
     case SimpleStrategy:
@@ -22,15 +16,11 @@ void Composition::Repair () {
     case TeXStrategy:
         ComposeWithTeXCompositor();
         break;
-    // ...
+
     }
     // merge results with existing composition, if necessary
 }
-/*
-*/
 #endif
-/*
-*/
 #ifdef Consequences2
 class Compositor {
     public:
@@ -41,48 +31,30 @@ class Composition {
     void Repair();
     Compositor* _compositor;
 };
-/*
-*/
 void Composition::Repair () {
     _compositor->Compose();
     // merge results with existing composition, if necessary
 }
-/*
-*/
 #endif
-/*
-*/
 #ifdef Implementation
-/*
-*/
 template <class AStrategy>
 class Context {
     void Operation() { theStrategy.DoAlgorithm(); }
-    // ...
+
 private:
     AStrategy theStrategy;
 };
-/*
-*/
 class MyStrategy {
 public:
     void DoAlgorithm();
 };
 
 Context<MyStrategy> aContext;
-/*
-*/
 #endif
-/*
-*/
 #ifdef SampleCode
 #include "Geom.H"
-/*
-*/
 class Compositor;
 class Component;
-/*
-*/
 class Composition {
 public:
     Composition(Compositor*);
@@ -96,8 +68,6 @@ private:
                                // in components
     int _lineCount;            // the number of lines
 };
-/*
-*/
 class Compositor {
 public:
     virtual int Compose(
@@ -107,16 +77,12 @@ public:
 protected:
     Compositor();
 };
-/*
-*/
 Coord coords[] = {
     1,2,3
 };
 int b[] = {
     1,2,2
 };
-/*
-*/
 void Composition::Repair () {
     Coord* natural;
     Coord* stretchability;
@@ -125,30 +91,22 @@ void Composition::Repair () {
     int* breaks;
 
     // prepare the arrays with the desired component sizes
-    // ...
-/*
-*/
+
     // kills comiler warnings
     natural = coords;
     stretchability = coords;
     shrinkability = coords;
     componentCount = 1;
     breaks = b;
-/*
-*/
     // determine where the breaks are:
     int breakCount;
     breakCount = _compositor->Compose(
         natural, stretchability, shrinkability,
         componentCount, _lineWidth, breaks
     );
-/*
-*/
     // lay out components according to breaks
-    // ...
+
 }
-/*
-*/
 class SimpleCompositor : public Compositor {
 public:
     SimpleCompositor();
@@ -157,10 +115,8 @@ public:
         Coord natural[], Coord stretch[], Coord shrink[],
         int componentCount, int lineWidth, int breaks[]
     );
-    // ...
+
 };
-/*
-*/
 class TeXCompositor : public Compositor {
 public:
     TeXCompositor();
@@ -169,10 +125,8 @@ public:
         Coord natural[], Coord stretch[], Coord shrink[],
         int componentCount, int lineWidth, int breaks[]
     );
-    // ...
+
 };
-/*
-*/
 class ArrayCompositor : public Compositor {
 public:
     ArrayCompositor(int interval);
@@ -181,15 +135,9 @@ public:
         Coord natural[], Coord stretch[], Coord shrink[],
         int componentCount, int lineWidth, int breaks[]
     );
-    // ...
+
 };
-/*
-*/
 Composition* quick = new Composition(new SimpleCompositor);
 Composition* slick = new Composition(new TeXCompositor);
 Composition* iconic = new Composition(new ArrayCompositor(100));
-/*
-*/
 #endif
-/*
-*/
